@@ -27,7 +27,8 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100%;
+  padding-top: 80px;
 }
 
 h1 {
@@ -65,4 +66,24 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+nav {
+  position: fixed;        
+  top: 0;
+  left: 0;
+  width: 100%;            
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px;
+  background-color: #333;
+  z-index: 1000;          
+  margin-right: 10px;
+}
+
+* {
+  box-sizing: border-box;
 }
