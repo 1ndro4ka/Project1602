@@ -1,18 +1,45 @@
-:root {
+/* ── RESET ───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 72px; /* navbar height */
+  width: 100%;
+  min-height: 100vh;
+  display: block;
+  background-color: #070d1a;
+  overflow-x: hidden;
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  color: rgba(255, 255, 255, 0.87);
+  color-scheme: light dark;
 }
 
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── GLOBALS ─────────────────────────────────────────── */
 a {
   font-weight: 500;
   color: #646cff;
@@ -20,15 +47,6 @@ a {
 }
 a:hover {
   color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100%;
-  padding-top: 80px;
 }
 
 h1 {
@@ -55,6 +73,12 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -66,24 +90,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
-
-nav {
-  position: fixed;        
-  top: 0;
-  left: 0;
-  width: 100%;            
-  
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 20px;
-  background-color: #333;
-  z-index: 1000;          
-  margin-right: 10px;
-}
-
-* {
-  box-sizing: border-box;
 }

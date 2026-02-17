@@ -1,0 +1,130 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 72px;
+  background: rgba(10, 15, 30, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-sizing: border-box;
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.navbar__logo {
+  flex-shrink: 0;
+}
+
+.navbar__title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #fff 40%, #7eb8f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navbar__link {
+  padding: 0.5rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: color 0.2s ease, background 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+.navbar__link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.navbar__link--active {
+  color: #7eb8f7;
+  background: rgba(126, 184, 247, 0.1);
+}
+
+.navbar__link--active:hover {
+  color: #7eb8f7;
+}
+
+.navbar__auth {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navbar__btn {
+  padding: 0.45rem 1.1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+}
+
+.navbar__btn--outline {
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+}
+
+.navbar__btn--outline:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.navbar__btn--filled {
+  color: #ffffff;
+  background: #1a56db;
+  border: 1px solid #1a56db;
+}
+
+.navbar__btn--filled:hover {
+  background: #1e4fc2;
+  border-color: #1e4fc2;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(26, 86, 219, 0.4);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1.25rem;
+    height: 64px;
+  }
+
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__title {
+    font-size: 1.1rem;
+  }
+}
