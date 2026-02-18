@@ -1,4 +1,5 @@
 .navbar {
+  --navbar-height: 4.5rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -8,7 +9,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  height: 4.5rem;
+  height: var(--navbar-height);
   background: rgba(10, 15, 30, 0.92);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -192,12 +193,14 @@
 @media (max-width: 768px) {
   .navbar {
     padding: 0 1.25rem;
-    height: 4rem;
+    --navbar-height: 4rem;
+    height: var(--navbar-height);
   }
 
   .navbar__links {
     display: none;
   }
+  /* Mobile menu is styled in the dedicated block below; keep hidden here */
 
   .navbar__title {
     font-size: 1rem;
@@ -206,5 +209,90 @@
   .navbar__btn {
     font-size: 0.875rem;
     padding: 0.45rem 1rem;
+  }
+}
+/* Burger */
+.navbar__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar__burger span {
+  width: 22px;
+  height: 2px;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.navbar__burger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar__burger.active span:nth-child(2) {
+  opacity: 0;
+}
+.navbar__burger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile menu (hidden on desktop; becomes an expanding panel below the navbar on small screens) */
+.navbar__mobile {
+  display: none; /* hidden on desktop */
+  position: absolute; /* positioned relative to the navbar (nav is fixed) */
+  top: 100%; /* directly below the navbar */
+  left: 0;
+  width: 100%;
+  background: rgba(10, 15, 30, 0.98);
+  backdrop-filter: blur(20px);
+  flex-direction: column;
+  padding: 0 1.5rem; /* horizontal padding preserved; vertical space handled by children */
+  gap: 1rem;
+  max-height: 0; /* collapsed when closed */
+  overflow: hidden;
+  transition: max-height 0.28s ease, padding 0.28s ease;
+  z-index: 998; /* below the navbar (1000) but above page content */
+  pointer-events: none;
+}
+
+.navbar__mobile.open {
+  max-height: calc(100vh - var(--navbar-height)); /* expand to fill remaining viewport */
+  padding: 1.5rem;
+  pointer-events: auto;
+  display: flex;
+}
+
+.navbar__mobile a {
+  color: #f8fafc;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.navbar__mobile-auth {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar__links,
+  .navbar__auth {
+    display: none;
+  }
+
+  .navbar__mobile {
+    display: flex; /* enable mobile menu layout on small screens */
+    top: 4rem; /* mobile navbar height override */
+  }
+
+  .navbar__burger {
+    display: flex;
+    position: relative;
+    z-index: 1001; /* keep burger above the mobile panel */
   }
 }

@@ -178,7 +178,7 @@
   font-family: var(--font-display);
   font-size: 3rem;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.05);
+  color: rgba(112, 108, 108, 0.779);
   line-height: 1;
   margin-bottom: 1rem;
   letter-spacing: -0.05em;
@@ -404,29 +404,160 @@
     grid-template-columns: 1fr;
   }
 }
-
 @media (max-width: 640px) {
+  /* ===== BASE ===== */
   .about-container {
     padding: 0 1rem;
   }
 
+  /* ===== HERO ===== */
   .about-hero {
-    padding: 4rem 0 3rem;
+    padding: 3.5rem 0 3rem;
+  }
+
+  .about-hero-grid {
+    gap: 2.5rem;
+  }
+
+  .about-hero-title {
+    font-size: 2.1rem;
+    line-height: 1.15;
+  }
+
+  .about-hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.65;
   }
 
   .about-hero-actions {
     flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .about-hero-actions .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .about-hero-image {
-    height: 400px;
+    height: 360px;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Убираем тяжёлый декор на мобилке */
+  .about-hero-decoration {
+    display: none;
+  }
+
+  /* ===== FEATURES ===== */
+  .about-features {
+    padding: 3rem 0;
+  }
+
+  .about-features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .about-feature-card {
+    padding: 1.5rem;
+  }
+
+  .about-feature-title {
+    font-size: 1.05rem;
+  }
+
+  .about-feature-desc {
+    font-size: 0.875rem;
+  }
+
+  /* ===== PROCESS ===== */
+  .about-process {
+    padding: 3.5rem 0;
+  }
+
+  .about-section-header {
+    margin-bottom: 2rem;
+  }
+
+  .about-steps {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .about-step {
+    padding: 1.5rem;
+  }
+
+  .about-step-number {
+    font-size: 2.25rem;
+  }
+
+  .about-step-title {
+    font-size: 1.05rem;
+  }
+
+  .about-step-list li {
+    font-size: 0.875rem;
+  }
+
+  /* ===== STATS ===== */
+  .about-stats {
+    padding: 3rem 0;
   }
 
   .about-stats-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .about-stat {
+    padding: 1.5rem 1rem;
+  }
+
+  .about-stat-value {
+    font-size: 2rem;
+  }
+
+  .about-stat-label {
+    font-size: 0.8125rem;
+  }
+
+  /* ===== FAQ ===== */
+  .about-faq {
+    padding: 3.5rem 0;
+  }
+
+  .about-faq-question {
+    padding: 1rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .about-faq-answer {
+    padding: 0 1.25rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  /* ===== CTA ===== */
+  .about-cta {
+    padding: 3.5rem 0;
   }
 
   .about-cta-inner {
-    padding: 3rem 2rem;
+    padding: 2.5rem 1.75rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .about-cta-title {
+    font-size: 1.9rem;
+    line-height: 1.2;
+  }
+
+  .about-cta-desc {
+    font-size: 0.95rem;
+  }
+
+  .about-cta .btn {
+    width: 100%;
   }
 }

@@ -885,23 +885,194 @@
 }
 
 @media (max-width: 640px) {
+  /* Общие отступы */
+  :root {
+    --space-xs: 0.375rem;
+    --space-sm: 0.5rem;
+    --space-md: 0.75rem;
+    --space-lg: 1rem;
+    --space-xl: 1.25rem;
+    --space-2xl: 1.75rem;
+    --space-3xl: 2.5rem;
+    --space-4xl: 3rem;
+  }
+
   .section-inner {
-    padding: 0 var(--space-lg);
+    padding: 0 var(--space-md);
   }
-  
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: unset;
+  }
+
   .hero__inner {
-    padding: 5rem var(--space-lg) 4rem;
+    padding: 4rem var(--space-md) 3rem;
+    gap: var(--space-2xl);
   }
-  
+
+  .hero__heading {
+    font-size: 2.1rem;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  .hero__sub {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero__stats {
+    gap: var(--space-lg);
+    padding-top: var(--space-lg);
+  }
+
+  .hero__stat-value {
+    font-size: 1.25rem;
+  }
+
+  .hero__stat-label {
+    font-size: 0.6875rem;
+  }
+
+  /* Упрощаем визуал */
+  .hero__orb,
+  .hero__grid {
+    display: none;
+  }
+
+  /* Карточка в hero */
+  .hero__visual {
+    width: 100%;
+  }
+
+  .hero__card--main {
+    width: 100%;
+  }
+
+  .hero__card--badge {
+    position: static;
+    margin-top: var(--space-md);
+    animation: none;
+  }
+
+  /* ===== INFO ===== */
+  .info {
+    padding: var(--space-3xl) 0;
+  }
+
+  .info__image-block {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .info__img {
+    padding: var(--space-lg);
+  }
+
+  .info__img--main {
+    padding: var(--space-xl);
+  }
+
+  .info__highlight {
+    padding: var(--space-md);
+  }
+
+  .info__list li {
+    font-size: 0.875rem;
+  }
+
+  .info__actions {
+    flex-direction: column;
+  }
+
+  .info__actions .btn {
+    width: 100%;
+  }
+
+  /* ===== STEPS ===== */
+  .steps {
+    padding: var(--space-3xl) 0;
+  }
+
+  .steps__list {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
+  }
+
+  .step-card {
+    padding: var(--space-lg);
+  }
+
+  .step-card__num {
+    font-size: 2.5rem;
+  }
+
+  .step-card__title {
+    font-size: 1rem;
+  }
+
+  .step-card__desc {
+    font-size: 0.875rem;
+  }
+
+  /* ===== FEATURES ===== */
+  .features {
+    padding: var(--space-3xl) 0;
+  }
+
   .features__grid {
     grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
   }
-  
+
+  .feature-card {
+    padding: var(--space-lg);
+  }
+
+  .feature-card__title {
+    font-size: 0.9375rem;
+  }
+
+  .feature-card__desc {
+    font-size: 0.8125rem;
+  }
+
+  /* ===== CTA ===== */
+  .cta {
+    padding: var(--space-3xl) 0;
+  }
+
   .cta__inner {
-    padding: var(--space-3xl) var(--space-xl);
+    padding: var(--space-2xl) var(--space-lg);
   }
-  
-  .hero__card--main {
+
+  .cta__heading {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .cta__desc {
+    font-size: 0.9375rem;
+  }
+
+  .cta__actions {
+    flex-direction: column;
+  }
+
+  .cta__actions .btn {
     width: 100%;
   }
 }
