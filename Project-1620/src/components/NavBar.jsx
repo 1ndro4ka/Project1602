@@ -1,18 +1,19 @@
 import { NavLink } from "react-router-dom";
 import "../style/NavBar.css";
 
-// Рекомендуемое разрешение: 32x32px или 64x64px (SVG — любое, масштабируется)
 import logo from "../assets/logo.svg";
 
 function NavBar() {
   return (
     <nav className="navbar">
+      <NavLink to="/">
       <div className="navbar__brand">
         <div className="navbar__logo">
           <img src={logo} alt="Логотип" width={32} height={32} />
         </div>
         <span className="navbar__title">ШколаДок</span>
       </div>
+      </NavLink>
 
       <div className="navbar__links">
         <NavLink
