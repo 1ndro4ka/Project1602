@@ -1,8 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "../style/NavBar.css";
 
-// Замени на путь к своему логотипу
-// Рекомендуемое разрешение: 32x32p x или 64x64px (SVG — любое, масштабируется)
+// Рекомендуемое разрешение: 32x32px или 64x64px (SVG — любое, масштабируется)
 import logo from "../assets/logo.svg";
 
 function NavBar() {
@@ -10,12 +9,9 @@ function NavBar() {
     <nav className="navbar">
       <div className="navbar__brand">
         <div className="navbar__logo">
-          {/* logo.svg — положи файл в src/assets/logo.svg */}
           <img src={logo} alt="Логотип" width={32} height={32} />
         </div>
-        <NavLink to="/" className="navbar__home-link">
         <span className="navbar__title">ШколаДок</span>
-        </NavLink>
       </div>
 
       <div className="navbar__links">

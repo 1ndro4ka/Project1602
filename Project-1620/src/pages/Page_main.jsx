@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import "../style/Page_main.css";
 
-// ── Изображения для info-блока ────────────────────────
+// ── Импорты изображений для info-блока ────────────────────────
 // Рекомендуемое разрешение: 64x64px (SVG или PNG с прозрачностью)
 import imgPortal from "../assets/portal.svg";
 import imgDocs from "../assets/docs.svg";
 import imgCheck from "../assets/check.svg";
+
+// ── Импорты иконок для секции features ───────────────
+// Рекомендуемое разрешение: 32x32px SVG
 import iconSecurity from "../assets/icon-security.svg";
 import iconMobile   from "../assets/icon-mobile.svg";
 import iconSpeed    from "../assets/icon-speed.svg";
 import iconSchool   from "../assets/icon-school.svg";
-
 
 const stats = [
   { value: "500+", label: "Школ подключено" },
@@ -21,7 +23,6 @@ const stats = [
 
 const steps = [
   {
-    // Рекомендуемое разрешение иконок шагов: 28x28px SVG
     step: "01",
     title: "Создайте аккаунт",
     desc: "Зарегистрируйтесь за 2 минуты. Достаточно email и номера телефона.",
@@ -43,7 +44,7 @@ const features = [
     icon: iconSecurity,
     iconAlt: "Безопасность",
     title: "Безопасность данных",
-    desc: "Все документы хранятся в зашифрованном виде согласно 152-ФЗ о персональных данных.",
+    desc: "Все документы хранятся в зашифрованном виде в соответствии с законодательством о защите персональных данных.",
   },
   {
     icon: iconMobile,
@@ -65,7 +66,7 @@ const features = [
   },
 ];
 
-function MainPage() {
+function Page_main() {
   return (
     <div className="main">
 
@@ -166,7 +167,7 @@ function MainPage() {
           <p className="section-desc">
             Электронная система регистрации позволяет родителям подать документы для зачисления
             ребёнка в 1-й класс без визита в школу. Процесс полностью легитимен и соответствует
-            требованиям Министерства просвещения РК.
+            требованиям Министерства образования и науки РК.
           </p>
 
           <div className="info__grid">
@@ -193,30 +194,30 @@ function MainPage() {
             <div className="info__text-block">
               <div className="info__highlight">
                 <p>
-                  Система разработана в соответствии с Приказом Министерства просвещения РК
+                  Система разработана в соответствии с требованиями Министерства образования и науки РК
                   и полностью заменяет бумажный документооборот при зачислении в 1-й класс.
                 </p>
               </div>
 
               <ul className="info__list">
                 <li>
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="#1a56db" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="#1e4fc2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   Подача заявления за 3 минуты через браузер
                 </li>
                 <li>
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="#1a56db" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="#1e4fc2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   Загрузка сканов / фото документов
                 </li>
                 <li>
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="#1a56db" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="#1e4fc2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   Отслеживание статуса в личном кабинете
                 </li>
                 <li>
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="#1a56db" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="#1e4fc2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   Уведомления на email и SMS
                 </li>
                 <li>
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="#1a56db" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="#1e4fc2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   Хранение документов в защищённом облаке
                 </li>
               </ul>
@@ -254,29 +255,29 @@ function MainPage() {
       </section>
 
       {/* ── FEATURES ────────────────────────────────────────── */}
-<section className="features">
-  <div className="section-inner">
-    <div className="section-label">Преимущества</div>
-    <h2 className="section-heading">Почему родители выбирают нас</h2>
+      <section className="features">
+        <div className="section-inner">
+          <div className="section-label">Преимущества</div>
+          <h2 className="section-heading">Почему родители выбирают нас</h2>
 
-    <div className="features__grid">
-      {features.map((f, i) => (
-        <div className="feature-card" key={i}>
-          {/* Рекомендуемое разрешение: 32x32px SVG */}
-          <img
-            src={f.icon}
-            alt={f.iconAlt}
-            width={32}
-            height={32}
-            className="feature-card__icon"
-          />
-          <h3 className="feature-card__title">{f.title}</h3>
-          <p className="feature-card__desc">{f.desc}</p>
+          <div className="features__grid">
+            {features.map((f, i) => (
+              <div className="feature-card" key={i}>
+                {/* Рекомендуемое разрешение: 32x32px SVG */}
+                <img
+                  src={f.icon}
+                  alt={f.iconAlt}
+                  width={32}
+                  height={32}
+                  className="feature-card__icon"
+                />
+                <h3 className="feature-card__title">{f.title}</h3>
+                <p className="feature-card__desc">{f.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* ── CTA ─────────────────────────────────────────────── */}
       <section className="cta">
@@ -309,4 +310,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default Page_main;
