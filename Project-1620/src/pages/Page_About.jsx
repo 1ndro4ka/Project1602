@@ -82,23 +82,37 @@ function Page_about() {
       {/* Hero Section */}
       <section className="about-hero">
         <div className="about-container">
-          <div className="about-hero-content">
-            <div className="section-label">О системе</div>
-            <h1 className="about-hero-title">
-              Современная система электронной записи в школы
-            </h1>
-            <p className="about-hero-desc">
-              Наша платформа упрощает процесс зачисления детей в 1-й класс,
-              делая его быстрым, прозрачным и удобным для родителей по всей
-              Республике Казахстан.
-            </p>
-            <div className="about-hero-actions">
-              <Link to="/register" className="btn btn--primary btn--lg">
-                Начать регистрацию
-              </Link>
-              <a href="#faq" className="btn btn--ghost btn--lg">
-                Частые вопросы
-              </a>
+          <div className="about-hero-grid">
+            <div className="about-hero-content">
+              <div className="section-label">О системе</div>
+              <h1 className="about-hero-title">
+                Современная система электронной записи в школы
+              </h1>
+              <p className="about-hero-desc">
+                Наша платформа упрощает процесс зачисления детей в 1-й класс,
+                делая его быстрым, прозрачным и удобным для родителей по всей
+                Республике Казахстан.
+              </p>
+              <div className="about-hero-actions">
+                <Link to="/register" className="btn btn--primary btn--lg">
+                  Начать регистрацию
+                </Link>
+                <a href="#faq" className="btn btn--ghost btn--lg">
+                  Частые вопросы
+                </a>
+              </div>
+            </div>
+
+            {/* Рекомендуемое разрешение: 600x800px или 800x600px */}
+            <div className="about-hero-image">
+              <img
+                src="/src/assets/about-hero.jpg"
+                alt="Родители с детьми"
+                className="about-hero-img"
+              />
+              {/* Декоративные элементы */}
+              <div className="about-hero-decoration about-hero-decoration--1" />
+              <div className="about-hero-decoration about-hero-decoration--2" />
             </div>
           </div>
         </div>

@@ -20,11 +20,10 @@ export function AuthProvider({ children }) {
     setIsLoading(false);
   }, []);
 
-  // Регистрация
+  
   const register = (userData) => {
     const users = JSON.parse(localStorage.getItem("users") || "[]");
     
-    // Проверка существующего пользователя
     const existingUser = users.find((u) => u.email === userData.email);
     if (existingUser) {
       throw new Error("Пользователь с таким email уже существует");

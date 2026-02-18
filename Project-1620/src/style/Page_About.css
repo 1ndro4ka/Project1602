@@ -21,10 +21,18 @@
   padding: 6rem 0 4rem;
   background: linear-gradient(135deg, var(--c-bg-primary) 0%, var(--c-bg-elevated) 100%);
   border-bottom: 1px solid var(--c-border-subtle);
+  overflow: hidden;
+}
+
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
 }
 
 .about-hero-content {
-  max-width: 48rem;
+  max-width: 100%;
 }
 
 .about-hero-title {
@@ -48,6 +56,48 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+/* Hero Image */
+.about-hero-image {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--c-border-subtle);
+  background: var(--c-bg-subtle);
+}
+
+.about-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Декоративные элементы вокруг фото */
+.about-hero-decoration {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.about-hero-decoration--1 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(30, 79, 194, 0.3), transparent 70%);
+  top: -50px;
+  right: -50px;
+}
+
+.about-hero-decoration--2 {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(91, 142, 245, 0.2), transparent 70%);
+  bottom: -40px;
+  left: -40px;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -338,6 +388,15 @@
   .about-stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .about-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-hero-image {
+    height: 500px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -357,6 +416,10 @@
 
   .about-hero-actions {
     flex-direction: column;
+  }
+
+  .about-hero-image {
+    height: 400px;
   }
 
   .about-stats-grid {
