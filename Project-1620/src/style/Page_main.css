@@ -272,7 +272,7 @@
   max-width: 36rem;
 }
 
-.hero__badge {
+/* .hero__badge {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -285,18 +285,17 @@
   padding: 0.5rem 1rem;
   border-radius: 100px;
   margin-bottom: var(--space-xl);
-  transform: translateX(-10rem);
-  transform: translateY(5rem);
-}
 
-.hero__badge-dot {
+} */
+
+/* .hero__badge-dot {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
   background: var(--c-success);
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
   animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+} */
 
 @keyframes pulse {
   0%, 100% {
@@ -496,17 +495,18 @@
   color: var(--c-success);
   box-shadow: var(--shadow-md);
   backdrop-filter: blur(12px);
-  animation: float 3s ease-in-out infinite;
+  animation: float 3s ease-in-out infinite alternate;
+  
+
 }
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(2rem);
-    transform: translateX(-1.8rem);
+    transform: translateY(2rem) translateX(-2rem);
+
   }
   50% {
-    transform: translateY(3rem);
-    transform: translateX(-1.8rem);
+    transform: translateY(3rem) translateX(-2rem);
 
   }
 }
