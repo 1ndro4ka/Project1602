@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../hooks/useAuth";
 import "../style/NavBar.css";
 import logo from "../assets/logo.svg";
@@ -7,11 +7,32 @@ import logo from "../assets/logo.svg";
 function NavBar() {
   const { isAuthenticated, user } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef(null);
 
   const closeMenu = () => setMenuOpen(false);
 
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (menuOpen && navRef.current && !navRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    }
+
+    function handleScroll() {
+      if (menuOpen) setMenuOpen(false);
+    }
+
+    document.addEventListener("click", handleClickOutside);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll, { passive: true });
+    };
+  }, [menuOpen]);
+
   return (
-    <nav className="navbar">
+    <nav className="navbar" ref={navRef}>
       {/* Brand */}
       <NavLink to="/" className="navbar__brand-link" onClick={closeMenu}>
         <div className="navbar__brand">
