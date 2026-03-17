@@ -43,15 +43,23 @@ function NavBar() {
 
       {/* Desktop links */}
       <div className="navbar__links">
-        <NavLink to="/" className="navbar__link">Главная</NavLink>
-        <NavLink to="/about" className="navbar__link">О системе</NavLink>
-        <NavLink to="/schools" className="navbar__link">Школы</NavLink>
+        <NavLink to="/" className={({ isActive }) =>
+          isActive ? "navbar__link navbar__link--active" : "navbar__link"
+        }>Главная</NavLink>
+        <NavLink to="/about" className={({ isActive }) =>
+          isActive ? "navbar__link navbar__link--active" : "navbar__link"
+        }>О системе</NavLink>
+        <NavLink to="/schools" className={({ isActive }) =>
+          isActive ? "navbar__link navbar__link--active" : "navbar__link"
+        }>Школы</NavLink>
       </div>
 
       {/* Desktop auth */}
       <div className="navbar__auth">
         {isAuthenticated ? (
-          <NavLink to="/profile" className="navbar__user">
+          <NavLink to="/profile" className={({ isActive }) =>
+            isActive ? "navbar__user navbar__link--active" : "navbar__user"
+          }>
             {user?.fullName?.split(" ")[0] || "Профиль"}
           </NavLink>
         ) : (
@@ -79,13 +87,21 @@ function NavBar() {
 
       {/* Mobile menu */}
       <div className={`navbar__mobile ${menuOpen ? "open" : ""}`}>
-        <NavLink to="/" onClick={closeMenu}>Главная</NavLink>
-        <NavLink to="/about" onClick={closeMenu}>О системе</NavLink>
-        <NavLink to="/schools" onClick={closeMenu}>Школы</NavLink>
+        <NavLink to="/" onClick={closeMenu} className={({ isActive }) =>
+          isActive ? "navbar__link navbar__link--active" : "navbar__link"
+        }>Главная</NavLink>
+        <NavLink to="/about" onClick={closeMenu} className={({ isActive }) =>
+          isActive ? "navbar__link navbar__link--active" : "navbar__link"
+        }>О системе</NavLink>
+        <NavLink to="/schools" onClick={closeMenu} className={({ isActive }) =>
+          isActive ? "navbar__link navbar__link--active" : "navbar__link"
+        }>Школы</NavLink>
 
         <div className="navbar__mobile-auth">
           {isAuthenticated ? (
-            <NavLink to="/profile" onClick={closeMenu}>
+            <NavLink to="/profile" onClick={closeMenu} className={({ isActive }) =>
+              isActive ? "navbar__user navbar__link--active" : "navbar__user"
+            }>
               Профиль
             </NavLink>
           ) : (

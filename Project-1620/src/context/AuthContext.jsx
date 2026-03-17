@@ -4,92 +4,110 @@ export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [token, setToken] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Проверка сессии при загрузке приложения
   useEffect(() => {
-    const storedUser = localStorage.getItem("currentUser");
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error("Ошибка парсинга пользователя:", error);
-        localStorage.removeItem("currentUser");
-      }
-    }
     setIsLoading(false);
   }, []);
 
-  
-  const register = (userData) => {
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    
-    const existingUser = users.find((u) => u.email === userData.email);
-    if (existingUser) {
-      throw new Error("Пользователь с таким email уже существует");
+  const register = async (userData) => {
+    const res = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userData),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || 'Registration failed');
     }
 
-    const newUser = {
-      id: Date.now().toString(),
-      ...userData,
-      createdAt: new Date().toISOString(),
+    const data = await res.json();
+    setToken(data.token || null);
+    const srv = data.user || {};
+    const frontendUser = {
+      id: srv._id || srv.id,
+      fullName: srv.name || '',
+      email: srv.email || '',
+      phone: srv.phone || '',
+      createdAt: srv.createdAt || srv.created_at,
     };
-
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
-    
-    // Автоматический вход после регистрации
-    login(userData.email, userData.password);
-    
-    return newUser;
+    setUser(frontendUser);
+    return frontendUser;
   };
 
-  // Вход
-  const login = (email, password) => {
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const foundUser = users.find(
-      (u) => u.email === email && u.password === password
-    );
+  const login = async (email, password) => {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
 
-    if (!foundUser) {
-      throw new Error("Неверный email или пароль");
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || 'Login failed');
     }
 
-    // Сохраняем пользователя без пароля
-    const userWithoutPassword = { ...foundUser };
-    delete userWithoutPassword.password;
-
-    setUser(userWithoutPassword);
-    localStorage.setItem("currentUser", JSON.stringify(userWithoutPassword));
-    
-    return userWithoutPassword;
+    const data = await res.json();
+    setToken(data.token || null);
+    const srv = data.user || {};
+    const frontendUser = {
+      id: srv._id || srv.id,
+      fullName: srv.name || '',
+      email: srv.email || '',
+      phone: srv.phone || '',
+      createdAt: srv.createdAt || srv.created_at,
+    };
+    setUser(frontendUser);
+    return frontendUser;
   };
 
-  // Выход
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("currentUser");
+    setToken(null);
   };
 
-  // Обновление профиля
-  const updateProfile = (updatedData) => {
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const userIndex = users.findIndex((u) => u.id === user.id);
+  const updateProfile = async (updatedData) => {
+    if (!user || !token) throw new Error('Not authenticated');
 
-    if (userIndex !== -1) {
-      users[userIndex] = { ...users[userIndex], ...updatedData };
-      localStorage.setItem("users", JSON.stringify(users));
-
-      const updatedUser = { ...users[userIndex] };
-      delete updatedUser.password;
-      
-      setUser(updatedUser);
-      localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+    // map frontend field fullName -> backend name
+    const bodyToSend = { ...updatedData };
+    if (bodyToSend.fullName !== undefined) {
+      bodyToSend.name = bodyToSend.fullName;
+      delete bodyToSend.fullName;
     }
+
+    const res = await fetch('/api/auth/me', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+      body: JSON.stringify(bodyToSend),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || 'Update failed');
+    }
+
+    const data = await res.json();
+    const srv = data.user || {};
+    const frontendUser = {
+      id: srv._id || srv.id,
+      fullName: srv.name || '',
+      email: srv.email || '',
+      phone: srv.phone || '',
+      createdAt: srv.createdAt || srv.created_at,
+    };
+    setUser(frontendUser);
+    return frontendUser;
   };
 
   const value = {
     user,
+    token,
     isLoading,
     register,
     login,

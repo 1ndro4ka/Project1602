@@ -56,7 +56,7 @@ function Page_login() {
     setErrors({});
 
     try {
-      login(formData.email, formData.password);
+      await login(formData.email, formData.password);
       navigate("/profile");
     } catch (error) {
       setErrors({ submit: error.message });

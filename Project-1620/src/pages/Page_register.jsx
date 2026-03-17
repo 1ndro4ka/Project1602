@@ -77,13 +77,13 @@ function Page_register() {
 
     try {
       const userData = {
-        fullName: formData.fullName,
+        name: formData.fullName,
         email: formData.email,
         phone: formData.phone,
         password: formData.password,
       };
       
-      register(userData);
+      await register(userData);
       navigate("/profile");
     } catch (error) {
       setErrors({ submit: error.message });
