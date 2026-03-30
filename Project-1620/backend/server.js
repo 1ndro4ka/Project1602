@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from 'url';
 import authRoutes from './routes/auth.js';
+import schoolsRoutes from './routes/schools.js';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import csurf from 'csurf';
@@ -54,10 +55,11 @@ app.use(sanitizeMiddleware);
 const csrfProtection = csurf({ cookie: { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production' } });
 
 
-app.use('/api', csrfProtection);
-
-
-app.get('/api/csrf-token', (req, res) => {
+// Apply CSRF protection only to routes that need it. Authentication routes
+// (`/api/auth/*`) are left without CSRF so frontend can use simple fetch
+// during development; keep CSRF on the dedicated token endpoint so clients
+// can request a token when necessary.
+app.get('/api/csrf-token', csrfProtection, (req, res) => {
     try {
         res.json({ csrfToken: req.csrfToken() });
     } catch (err) {
@@ -67,6 +69,7 @@ app.get('/api/csrf-token', (req, res) => {
 
 // Mount routes
 app.use('/api/auth', authRoutes);
+app.use('/api/schools', schoolsRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB connected"))
