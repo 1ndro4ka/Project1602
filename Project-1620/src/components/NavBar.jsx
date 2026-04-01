@@ -52,6 +52,11 @@ function NavBar() {
         <NavLink to="/schools" className={({ isActive }) =>
           isActive ? "navbar__link navbar__link--active" : "navbar__link"
         }>Школы</NavLink>
+        {isAuthenticated && (
+          <NavLink to="/documents" className={({ isActive }) =>
+            isActive ? "navbar__link navbar__link--active" : "navbar__link"
+          }>Документы</NavLink>
+        )}
       </div>
 
       {/* Desktop auth */}
@@ -96,6 +101,11 @@ function NavBar() {
         <NavLink to="/schools" onClick={closeMenu} className={({ isActive }) =>
           isActive ? "navbar__link navbar__link--active" : "navbar__link"
         }>Школы</NavLink>
+        {isAuthenticated && (
+          <NavLink to="/documents" onClick={closeMenu} className={({ isActive }) =>
+            isActive ? "navbar__link navbar__link--active" : "navbar__link"
+          }>Документы</NavLink>
+        )}
 
         <div className="navbar__mobile-auth">
           {isAuthenticated ? (

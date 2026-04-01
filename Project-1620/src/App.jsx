@@ -13,6 +13,7 @@ import Page_schools from "./pages/Page_schools";
 import Page_login from "./pages/Page_login";
 import Page_register from "./pages/Page_register";
 import Page_profile from "./pages/Page_profile";
+import Page_documents from "./pages/Page_documents";
 
 function App() {
   return (
@@ -34,6 +35,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Page_profile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/documents"
+            element={
+              <PrivateRoute>
+                <Page_documents />
               </PrivateRoute>
             }
           />
