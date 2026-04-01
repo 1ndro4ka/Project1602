@@ -7,8 +7,19 @@ const schoolSchema = new mongoose.Schema({
   district: { type: String },
   type: { type: String },
   studentsCount: { type: Number, default: 0 },
-  hasPlaces: { type: Boolean, default: true },
-}, { timestamps: true });
+  maxperYear: { type: Number, required: true },
+  receiverd: { type: Number, default: 0 }
+}, { 
+  timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
+});
+
+
+
+schoolSchema.virtual('hasPlaces').get(function () {
+  return this.receiverd < this.maxperYear;
+});
 
 const School = mongoose.model('School', schoolSchema);
 
