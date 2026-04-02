@@ -85,7 +85,7 @@ app.get("/api/test", (req, res) => {
 app.use(express.static(path.join(__dirname, '../dist')));
 
 // Любой другой запрос (не API) будет возвращать React-приложение (index.html)
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
     res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
 });
 
