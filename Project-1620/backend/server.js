@@ -81,6 +81,14 @@ app.get("/api/test", (req, res) => {
     res.json({ message: "Backend работает" });
 });
 
+// Раздача статических файлов фронтенда
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// Любой другой запрос (не API) будет возвращать React-приложение (index.html)
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
