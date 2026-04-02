@@ -12,6 +12,11 @@ const DocumentSchema = new mongoose.Schema(
       ref: 'Application',
       default: null,
     },
+    school: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'School',
+      required: true,
+    },
     documents: {
       parent_statement: {
         filename: String,

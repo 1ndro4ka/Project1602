@@ -22,9 +22,13 @@ function Page_profile() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = () => {
-    updateProfile(formData);
-    setIsEditing(false);
+  const handleSave = async () => {
+    try {
+      await updateProfile(formData);
+      setIsEditing(false);
+    } catch (error) {
+      alert(error.message || "Ошибка при обновлении профиля");
+    }
   };
 
   const handleCancel = () => {

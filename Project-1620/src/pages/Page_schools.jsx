@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 import "../style/Page_schools.css";
 import CustomSelect from "../components/CustomSelect";
 
 function Page_schools() {
+  const { isAuthenticated } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("all");
   const [selectedType, setSelectedType] = useState("all");
@@ -34,7 +36,6 @@ function Page_schools() {
 
   useEffect(() => {
     let mounted = true;
-    setLoading(true);
     fetch("/api/schools")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch schools");
@@ -272,7 +273,7 @@ function Page_schools() {
 
                 <div className="school-card-footer">
                   <Link
-                    to="/register"
+                    to={isAuthenticated ? `/documents?school=${school.id}` : "/register"}
                     className={`btn ${
                       school.hasPlaces ? "btn--primary" : "btn--ghost"
                     } btn--block btn--sm`}

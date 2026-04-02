@@ -5,11 +5,32 @@ export const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
+  // Restore session from localStorage on mount
   useEffect(() => {
+    try {
+      const savedToken = localStorage.getItem("token");
+      const savedUser = localStorage.getItem("user");
+      if (savedToken && savedUser) {
+        setToken(savedToken);
+        setUser(JSON.parse(savedUser));
+      }
+    } catch {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    }
     setIsLoading(false);
   }, []);
+
+  const persistSession = (tkn, usr) => {
+    setToken(tkn);
+    setUser(usr);
+    if (tkn && usr) {
+      localStorage.setItem("token", tkn);
+      localStorage.setItem("user", JSON.stringify(usr));
+    }
+  };
 
   const register = async (userData) => {
     const res = await fetch('/api/auth/register', {
@@ -24,7 +45,6 @@ export function AuthProvider({ children }) {
     }
 
     const data = await res.json();
-    setToken(data.token || null);
     const srv = data.user || {};
     const frontendUser = {
       id: srv._id || srv.id,
@@ -33,7 +53,7 @@ export function AuthProvider({ children }) {
       phone: srv.phone || '',
       createdAt: srv.createdAt || srv.created_at,
     };
-    setUser(frontendUser);
+    persistSession(data.token || null, frontendUser);
     return frontendUser;
   };
 
@@ -50,7 +70,6 @@ export function AuthProvider({ children }) {
     }
 
     const data = await res.json();
-    setToken(data.token || null);
     const srv = data.user || {};
     const frontendUser = {
       id: srv._id || srv.id,
@@ -59,13 +78,15 @@ export function AuthProvider({ children }) {
       phone: srv.phone || '',
       createdAt: srv.createdAt || srv.created_at,
     };
-    setUser(frontendUser);
+    persistSession(data.token || null, frontendUser);
     return frontendUser;
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
 
   const updateProfile = async (updatedData) => {
@@ -101,7 +122,7 @@ export function AuthProvider({ children }) {
       phone: srv.phone || '',
       createdAt: srv.createdAt || srv.created_at,
     };
-    setUser(frontendUser);
+    persistSession(token, frontendUser);
     return frontendUser;
   };
 

@@ -6,6 +6,7 @@ const schoolSchema = new mongoose.Schema({
   rating: { type: Number, min: 0 },
   district: { type: String },
   type: { type: String },
+  email: { type: String, required: true },
   studentsCount: { type: Number, default: 0 },
   maxperYear: { type: Number, required: true },
   receiverd: { type: Number, default: 0 }

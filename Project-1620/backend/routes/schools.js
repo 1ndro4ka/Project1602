@@ -16,8 +16,8 @@ router.get('/', async (req, res) => {
 // POST /api/schools - create a new school
 router.post('/', async (req, res) => {
   try {
-    const { name, address, rating, district, type, studentsCount, hasPlaces } = req.body;
-    const school = new School({ name, address, rating, district, type, studentsCount, hasPlaces });
+    const { name, address, rating, district, type, email, studentsCount, hasPlaces, maxperYear } = req.body;
+    const school = new School({ name, address, rating, district, type, email, studentsCount, hasPlaces, maxperYear });
     const saved = await school.save();
     res.status(201).json(saved);
   } catch (err) {

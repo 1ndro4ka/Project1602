@@ -127,6 +127,74 @@
   width: 100%;
 }
 
+/* School Selection */
+.school-selection {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.875rem;
+}
+
+.school-selection-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin-bottom: 1rem;
+}
+
+.school-selection-label svg {
+  color: #5b8ef5;
+}
+
+.school-select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.625rem;
+  color: #f8fafc;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M3 5l3 3 3-3' stroke='%23cbd5e1' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.school-select:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.school-select:focus {
+  outline: none;
+  border-color: #5b8ef5;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.school-select option {
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 0.5rem;
+}
+
+.school-selection-loading,
+.school-selection-empty {
+  padding: 0.875rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.625rem;
+  color: #94a3b8;
+  font-size: 0.9375rem;
+}
+
 .documents-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
